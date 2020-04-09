@@ -11,6 +11,9 @@ import { ValueComponent } from './value/value.component';
 
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,13 @@ import { AuthService } from './_services/auth.service';
     HomeComponent,
     RegisterComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
+  ],
   providers: [AuthService, ErrorInterceptorProvider],
   bootstrap: [AppComponent],
 })
