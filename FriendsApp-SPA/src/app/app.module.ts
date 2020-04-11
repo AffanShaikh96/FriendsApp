@@ -1,3 +1,8 @@
+import { appRoutes } from './routes';
+import { RouterModule } from '@angular/router';
+import { MessagesComponent } from './messages/messages.component';
+import { MembersListComponent } from './members-list/members-list.component';
+import { ListsComponent } from './lists/lists.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
@@ -22,6 +27,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     NavComponent,
     HomeComponent,
     RegisterComponent,
+    MessagesComponent,
+    MembersListComponent,
+    ListsComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +37,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     FormsModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [AuthService, ErrorInterceptorProvider],
   bootstrap: [AppComponent],
