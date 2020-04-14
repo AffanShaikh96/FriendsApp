@@ -19,6 +19,7 @@ using System.Net;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using FriendsApp.API.Helpers;
+using AutoMapper;
 
 namespace FriendsApp.API
 {
@@ -37,7 +38,11 @@ namespace FriendsApp.API
             services.AddDbContext<DataContext>(a => a.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddCors();
+            services.AddAutoMapper(typeof(IFriendRepository).Assembly);
+            services.AddControllers().AddNewtonsoftJson(options =>
+options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IFriendRepository, FriendRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
