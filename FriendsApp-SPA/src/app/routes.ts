@@ -1,23 +1,35 @@
+import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
-import { MembersListComponent } from './members-list/members-list.component';
+import { MembersListComponent } from './members/members-list/members-list.component';
 import { HomeComponent } from './home/home.component';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './_guards/auth.guard';
+import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 
 export const appRoutes: Routes = [
   // order is important here: always use wildcard in last
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   {
     path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'members', component: MembersListComponent },
+      {
+        path: 'members',
+        component: MembersListComponent,
+        resolve: { users: MemberListResolver },
+      },
+      {
+        path: 'members/:id',
+        component: MemberDetailComponent,
+        resolve: { user: MemberDetailResolver },
+      },
       { path: 'messages', component: MessagesComponent },
       { path: 'lists', component: ListsComponent },
     ],
   },
 
-  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
