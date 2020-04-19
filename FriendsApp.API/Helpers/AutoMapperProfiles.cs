@@ -20,6 +20,8 @@ namespace FriendsApp.API.Helpers
             .ForMember(dest => dest.Age,
             options => options.MapFrom(src => src.DateOfBirth.CalculateAge())); ;
             CreateMap<Photo, PhotosForDetailedDto>();
+            CreateMap<UserForUpdateDto, User>();
+
 
         }
     }

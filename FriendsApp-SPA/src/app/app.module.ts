@@ -1,3 +1,6 @@
+import { PreventUnsafeChanges } from './_guards/prevent-unsafe-changes.guard';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { AuthGuard } from './_guards/auth.guard';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -12,8 +15,8 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 
-import { BrowserModule, HammerGestureConfig } from '@angular/platform-browser';
-import { NgModule, Injectable } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { NgxGalleryModule } from 'ngx-gallery-9';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -48,6 +51,7 @@ export function tokenGetter() {
     ListsComponent,
     MemberCardComponent,
     MemberDetailComponent,
+    MemberEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +78,8 @@ export function tokenGetter() {
     UserService,
     MemberDetailResolver,
     MemberListResolver,
+    MemberEditResolver,
+    PreventUnsafeChanges,
   ],
   bootstrap: [AppComponent],
 })
