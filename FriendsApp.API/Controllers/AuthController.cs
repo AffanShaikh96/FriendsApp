@@ -38,14 +38,12 @@ namespace FriendsApp.API.Controllers
                 return BadRequest("Username already exists...!");
             }
 
-            var user = new User
-            {
-                Username = userForRegisterDto.Username
-            };
-
+            var user = _mapper.Map<User>(userForRegisterDto);
             var createdUser = await _repo.Register(user, userForRegisterDto.Password);
 
-            return StatusCode(201);
+            var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
+
+            return CreatedAtRoute("GetUser", new { Controller = "User", id = createdUser.Id }, userToReturn);
 
         }
 

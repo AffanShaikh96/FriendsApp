@@ -21,11 +21,12 @@ import { NgModule } from '@angular/core';
 import { NgxGalleryModule } from 'ngx-gallery-9';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -60,6 +61,8 @@ export function tokenGetter() {
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
